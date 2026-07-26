@@ -1,0 +1,41 @@
+# Python
+server/.venv/
+**/__pycache__/
+*.pyc
+server/.pytest_cache/
+*.egg-info/
+
+# Agent build artifacts
+agent/build/
+agent/*.nsp
+agent/*.nso
+agent/*.nro
+agent/*.nacp
+agent/*.npdm
+agent/*.elf
+agent/*.map
+agent/dist/
+agent/*-release.zip
+
+# Host-test binaries (agent/tests/host)
+agent/tests/host/run_tests
+agent/tests/host/*.dSYM/
+
+# Local backups of on-device images — machine-specific and large
+backup/
+
+# Development notes. These live in the GitHub wiki, not the repo — they are
+# working documents and churn far faster than the code.
+docs/
+
+# Local device config and secrets
+agent/config.ini
+.device-token
+*.device-token
+# Per-developer console address etc; sourced by dev.sh
+.env
+
+# Soak/verification output written by scripts in server/tests/
+soak_*.log
+shot*.jpg
+live_screenshot.jpg

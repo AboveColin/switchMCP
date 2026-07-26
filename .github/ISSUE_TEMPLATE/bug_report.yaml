@@ -1,0 +1,79 @@
+name: Bug report
+description: Something does not work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Please check the **Known limitations** section of the README first.
+        Hardware watchpoints not firing, USB not working, and only one client
+        at a time are all documented behaviour, not bugs.
+
+  - type: input
+    id: hos
+    attributes:
+      label: Switch firmware (HOS) version
+      placeholder: "e.g. 18.1.0"
+    validations: {required: true}
+
+  - type: input
+    id: ams
+    attributes:
+      label: Atmosphère version
+      placeholder: "e.g. 1.7.1"
+    validations: {required: true}
+
+  - type: input
+    id: agent
+    attributes:
+      label: switch-agentd version
+      description: From `ping` or the first line of the agent log.
+      placeholder: "e.g. 0.2.0"
+    validations: {required: true}
+
+  - type: dropdown
+    id: mmc
+    attributes:
+      label: sysMMC or emuMMC?
+      options: [emuMMC, sysMMC, "Not sure"]
+    validations: {required: true}
+
+  - type: input
+    id: tier
+    attributes:
+      label: Configured tier
+      description: The `tier` line in config.ini, or the output of the `capabilities` tool.
+      placeholder: "observe / control / invasive"
+    validations: {required: true}
+
+  - type: textarea
+    id: other_sysmodules
+    attributes:
+      label: Other sysmodules installed
+      description: >-
+        List everything under atmosphere/contents/. Sysmodules interact in
+        surprising ways and this is usually the first thing worth ruling out.
+    validations: {required: true}
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations: {required: true}
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: The exact tool calls or commands.
+    validations: {required: true}
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Agent log and any crash report
+      description: >-
+        `sd:/config/switch-agentd/agent.log`, plus anything in
+        `sd:/atmosphere/crash_reports/` or `fatal_reports/` matching
+        420000000000AE57. Paste as text, not screenshots.
+      render: shell

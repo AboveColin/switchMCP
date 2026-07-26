@@ -1,0 +1,21 @@
+name: Feature request
+description: Suggest a capability
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The task, not the API you have in mind for it.
+    validations: {required: true}
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you want it to look like?
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: This is not already listed under Known limitations or the roadmap.
+          required: true

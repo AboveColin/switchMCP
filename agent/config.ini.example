@@ -1,0 +1,40 @@
+# switch-agentd configuration. Place at:
+#   sd:/config/switch-agentd/config.ini
+# If this file is missing on first boot, the agent generates one with a random
+# token (read it back off the SD card to configure the MCP server).
+
+port = 6060
+token = change-me-to-a-long-random-string
+log_level = info          # error | warn | info | debug
+
+# --- capability tier ---------------------------------------------------------
+# The agent starts read-only. Raise this deliberately; it is the main thing
+# standing between a confused agent and a damaged console.
+#
+#   observe   read state only — screenshots, files, sysinfo, logs, crash
+#             reports. Cannot change anything on the console.
+#   control   everything a person holding the console could do: controller and
+#             touch input, launch/close apps, read and write SD-card files,
+#             brightness/volume, reboot. Nothing here risks the firmware.
+#   invasive  writes that can leave the console unbootable, destroy save data,
+#             or damage hardware: NAND/BIS writes, raw i2c, live memory
+#             patching, uninstalls, clock changes.
+#
+# Commands above the configured tier are refused before the handler runs, and
+# the refusal names the setting that would allow them.
+tier = observe
+
+# --- sub-gates inside the invasive tier --------------------------------------
+# Independent of `tier`: reaching `invasive` is necessary but not sufficient.
+# Each is its own deliberate opt-in.
+allow_nand_write = false  # uninstall, save restore — writes NAND
+allow_overclock = false   # sys-clk-style clock control; thermal risk
+allow_hardware = false    # raw i2c/gpio; PMIC writes can destroy hardware
+
+# --- notes -------------------------------------------------------------------
+# emuMMC is detected automatically from sd:/emuMMC/emummc.ini and reported in
+# the handshake. On emuMMC a destroyed system is recovered by restoring the SD
+# image, so invasive work is far less risky there than on sysMMC.
+#
+# Any mutating command accepts "dry_run": true in its request frame; the agent
+# replies with what it would do and runs nothing.

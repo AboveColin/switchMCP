@@ -1,0 +1,12 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or general support
+    url: https://github.com/AboveColin/switchMCP/discussions
+    about: >-
+      Issues are for bugs and feature requests. Please ask general questions in
+      Discussions.
+  - name: Known limitations
+    url: https://github.com/AboveColin/switchMCP#known-limitations
+    about: >-
+      Hardware watchpoints, USB and multi-client access have documented limits.
+      Please check these before filing.
