@@ -219,3 +219,10 @@ devkitPro, SciresM and the ReSwitched community — the protocol work here leans
 heavily on their documentation.
 
 Licensed under [GPLv3](LICENSE).
+
+## Supporting the project
+
+This project is free and stays free. If it is useful to you, you can support its
+development through [GitHub Sponsors](https://github.com/sponsors/AboveColin).
+Sponsorship is voluntary and unlocks nothing: every feature, fix and security
+update ships in the public release.
